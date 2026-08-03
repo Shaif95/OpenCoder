@@ -10,10 +10,13 @@ import { useSubmitOnboarding } from "../hooks/useSubmitOnboarding";
 interface OnboardingProvidersTabProps {
   /** Whether this is being shown in a dialog context */
   isDialog?: boolean;
+  /** Which providers to show as quick-pick API key fields */
+  providerIds?: string[];
 }
 
 export function OnboardingProvidersTab({
   isDialog,
+  providerIds = ["openai", "anthropic", "gemini"],
 }: OnboardingProvidersTabProps) {
   const formMethods = useForm();
   const dispatch = useAppDispatch();
@@ -22,11 +25,7 @@ export function OnboardingProvidersTab({
     isDialog,
   );
 
-  const providerConfigs = [
-    providers["openai"],
-    providers["anthropic"],
-    providers["gemini"],
-  ];
+  const providerConfigs = providerIds.map((id) => providers[id]);
 
   const handleFormSubmit = () => {
     // Find the first provider with an API key entered

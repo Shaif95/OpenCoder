@@ -25,6 +25,7 @@ import { ROUTES } from "../../util/navigation";
 import ConfirmationDialog from "../dialogs/ConfirmationDialog";
 import { Button } from "../ui";
 import { HistoryTableRow } from "./HistoryTableRow";
+import { ProviderQuickSetup } from "./ProviderQuickSetup";
 import { groupSessionsByDate, parseDate } from "./util";
 
 export function History() {
@@ -169,6 +170,8 @@ export function History() {
           />
         )}
       </div>
+
+      <ProviderQuickSetup />
 
       <div className="thin-scrollbar flex w-full flex-1 flex-col overflow-y-auto">
         {filteredAndSortedSessions.length === 0 && (
